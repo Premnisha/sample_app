@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 #automated running of tests
-
+ gem 'guard-rspec', '1.2.1'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -44,10 +44,13 @@ group :development, :test do
   gem 'spring'
 
   gem 'capybara'
+  gem 'guard-spork', '1.2.0'
+  gem 'childprocess', '0.3.6'
+  gem 'spork-rails', git: 'https://github.com/sporkrb/spork-rails'
 end
+
 # Test gems on Linux
 group :test do
- gem 'rb-inotify', '~> 0.9'
-
+  gem 'rb-inotify', '0.8.8'
   gem 'libnotify', '0.5.9'
 end
