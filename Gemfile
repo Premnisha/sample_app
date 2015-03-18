@@ -27,7 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'protected_attributes'
 
 # Use ActiveModel has_secure_password
-  gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -53,6 +55,7 @@ end
 
 # Test gems on Linux
 group :test do
+  gem 'factory_girl_rails'
   gem 'rb-inotify', '0.8.8'
   gem 'libnotify', '0.5.9'
 end

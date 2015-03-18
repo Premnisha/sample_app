@@ -19,10 +19,10 @@ require 'rspec/autorun'
 # Add this to load Capybara integration:
 require 'capybara/rspec'
 require 'capybara/rails'
-
+require 'factory_girl_rails'
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rubygems'
-  require 'spork'
+require 'spork'
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
@@ -46,8 +46,10 @@ Spork.prefork do
     # config.mock_with :rr
     config.mock_with :rspec
     config.include ApplicationHelper
+    config.include FactoryGirl::Syntax::Methods
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
 
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
