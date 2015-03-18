@@ -25,12 +25,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 #annotate models with schemas
-  gem 'annotate'
-  gem 'capybara'
-  gem 'guard-spork', '1.2.0'
-  gem 'childprocess', '0.3.6'
-  gem 'spork-rails', git: 'https://github.com/sporkrb/spork-rails'
-end
+gem 'annotate'
+gem 'capybara'
+gem 'guard-spork', '1.2.0'
+gem 'childprocess', '0.3.6'
+gem 'spork-rails', git: 'https://github.com/sporkrb/spork-rails'
+
 
 # Test gems on Linux
 group :test do
