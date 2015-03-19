@@ -11,6 +11,7 @@ RSpec.describe "AuthenticationPages", type: :request do
       it "should show the correct title" do
         page.source.should have_selector('title', text: 'Sign in', visible: false)
       end
+      it { should have_link('Settings', href: edit_user_path(user)) }
       it "should show correct alert" do
         page.source.should have_selector('div.alert.alert-error', text: 'Invalid', visible: false)
       end
