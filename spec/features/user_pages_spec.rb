@@ -4,6 +4,24 @@ require 'spec_helper'
 feature "User pages" do
 
   subject { page }
+  
+  let(:user) { FactoryGirl.create(:user) }
+    before(:each) do
+      visit signin_path
+      fill_in "Email", with: user.email.upcase
+      fill_in "Password", with: user.password
+      click_button "Sign in"
+      visit users_path
+    end
+
+  it { should have_selector('title', text: 'All users') }
+  it { should have_selector('h1',    text: 'All users') }
+
+  it "should list each user" do
+    User.all.each do |user|
+      page.should have_selector('li', text: user.name)
+    end
+  end
 
   describe "signup page" do
     before { visit signup_path }
@@ -36,11 +54,11 @@ feature "User pages" do
         it { should have_link('Sign out', href: signout_path) }
         specify { user.reload.name.should  == new_name }
         specify { user.reload.email.should == new_email }
-      end
     end
+  end
 
     describe "page" do
-      it { should have_selector('h1',    text: "Update your profile") }
+      it { page.source.should have_selector('h1',    text: "Update your profile", visible: false) }
       it { should have_selector('title', text: "Edit user") }
       it { should have_link('change', href: 'http://gravatar.com/emails') }
     end
@@ -50,7 +68,6 @@ feature "User pages" do
 
       it { should have_content('error') }
     end
-  end
   feature "profile page" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
