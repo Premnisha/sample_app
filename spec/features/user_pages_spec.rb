@@ -14,7 +14,7 @@ feature "User pages" do
       visit users_path
     end
 
-  it { should have_selector('title', text: 'All users') }
+  it { should have_selector('title', text: 'All users',visible: false) }
   it { should have_selector('h1',    text: 'All users') }
 
   it "should list each user" do
@@ -35,7 +35,6 @@ feature "User pages" do
   describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
     before do
-      sign_in user
       visit edit_user_path(user)
     end
     describe "with valid information" do
@@ -49,17 +48,16 @@ feature "User pages" do
           click_button "Save changes"
         end
 
-        it { should have_selector('title', text: new_name) }
+        it { should have_selector('title', text: new_name, visible: false) }
         it { should have_selector('div.alert.alert-success') }
         it { should have_link('Sign out', href: signout_path) }
         specify { user.reload.name.should  == new_name }
         specify { user.reload.email.should == new_email }
     end
-  end
 
     describe "page" do
-      it { page.source.should have_selector('h1',    text: "Update your profile", visible: false) }
-      it { should have_selector('title', text: "Edit user") }
+      it { page.source.should have_selector('h1',text: "Update your profile", visible: false) }
+      it { page.source.should have_selector('title', text: "Edit user", visible: false) }
       it { should have_link('change', href: 'http://gravatar.com/emails') }
     end
 
@@ -68,6 +66,7 @@ feature "User pages" do
 
       it { should have_content('error') }
     end
+  end
   feature "profile page" do
     let(:user) { FactoryGirl.create(:user) }
     before { visit user_path(user) }
