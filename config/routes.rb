@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'list', to: 'list#index'
+  get 'list/item_details'
+  get 'list/items'
+  get 'articles/index'
+  get 'articles/index/:state', to:'articles#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,25 @@
+<h1><%= "Details of #{@category} ##{@index}" %></h1>
+<% @list.shift %>
+<table class= "table table-striped">
+  <% if @category == "Item" %>
+  <!-- to handle multi valued keys -->
+    <% @list.each do |key,value| %>
+      <tc>
+        <th><%= key %></th>
+      </tc>
+      <tr>
+        <td></td>
+        <% value.each do |val| %>
+        <td><%= val %></td>
+        <%end%>
+      </tr>
+    <%end%>
+  <% else %>
+    <% @list.each do |key,value| %>
+      <tr>
+        <th><%= key %></th>
+        <td><%= value %></td>
+      </tr>
+    <% end %>
+  <%end%>
+</table>

@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  $(function() {
+  $("#count_textbox").change(function() {
+    var state = $('#count_textbox').val();
+    if(state == "") state="0";
+    console.log(state);
+    /* Send the data using post and put the results in a div */
+    $.getJSON('/articles/index/?state=' + state, function(data){
+        $("#count_textbox").val(data.message);
+    })
+  });
+});
+</script>
+
+<input type="text" size="57" id="count_textbox">
+<table id="table_view">
+  <tr>
+
+    <th>Title</th>
+    <th>Summary</th>
+  </tr>
+  <tr>
+    <% @articles_list.each do |article| %>
+    <tr>
+      <td><%= article['title'] %></td>
+      <td><%= article['summary'] %></td>
+    </tr>
+  <% end %> 
+  </tr>
+</table>

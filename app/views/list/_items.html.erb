@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  $(".my_link").click(function (){ 
+    var category = $('select#category_id :selected').val();
+    $.get('/list/item_details.js?id=' + $(this).attr('id') + '&category=' + category, function(data){
+      $("#item_index");
+    });
+  });
+</script>
+
+<div class="row">
+  <div class="col-md-4">
+    <% if @lists %>
+      <table class = "table table-striped" >
+        <h1><%= "#{@category} List" %></h1>
+        <% @lists.each do |list| %>
+          <tr>
+            <td>
+              <%=link_to "#{@category} #{list}", '/list/item_details', id: list, remote: true, class: 'my_link' %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+  
+  <div class="col-md-5">
+    <div id = "item_index"></div>
+  </div>
+
+</div>

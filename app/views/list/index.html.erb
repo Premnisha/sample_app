@@ -1,0 +1,21 @@
+<script type="text/javascript">
+  $(function() {
+    $("#category_id").change(function() {
+      var category = $('select#category_id :selected').val();
+      if(category == "") category="0";
+      $.get('/list/items.js?category=' + category);
+    });
+  });
+</script>
+<div class ="col-md-2">
+  <h1><label>Category</label></h1><br/>
+  <select name="category[id]" id="category_id">
+    <option value="1">Customers</option>
+    <option value="2">Products</option>
+    <option value="3">Items</option>
+    <option value="4">Invoice</option>
+  </select>
+</div>
+<div id = 'category_index'>
+  <%= render partial: 'items', controller: 'list' %>
+</div>
